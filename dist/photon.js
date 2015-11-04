@@ -1989,8 +1989,8 @@ module.exports = function(val, options){
   options = options || {};
   if ('string' == typeof val) return parse(val);
   return options.long
-    ? long(val)
-    : short(val);
+    ? _long(val)
+    : _short(val);
 };
 
 /**
@@ -2040,7 +2040,7 @@ function parse(str) {
  * @api private
  */
 
-function short(ms) {
+function _short(ms) {
   if (ms >= d) return Math.round(ms / d) + 'd';
   if (ms >= h) return Math.round(ms / h) + 'h';
   if (ms >= m) return Math.round(ms / m) + 'm';
@@ -2056,7 +2056,7 @@ function short(ms) {
  * @api private
  */
 
-function long(ms) {
+function _long(ms) {
   return plural(ms, d, 'day')
     || plural(ms, h, 'hour')
     || plural(ms, m, 'minute')
